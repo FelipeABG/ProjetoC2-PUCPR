@@ -63,7 +63,7 @@ void printList(List *list){
     Product *product = list->head;
 
     while(product != NULL){
-        printf("Product id: %d \nProduct price: %.2f \nProduct amount: %d \n\n", product->id, product->price, product->amount);
+        printf("Product id: %d \nProduct price: R$%.2f \nProduct amount: %d \n\n", product->id, product->price, product->amount);
         product = product->next;
     }
 
@@ -76,7 +76,7 @@ List* getListFromFile(char* file_name){
     List* list = (List*)malloc(sizeof(List));
 
     if(file == NULL){
-        printf("Error opening file %s\n", file_name);
+        printf("Error: The following file could no be opened: %s\n", file_name);
         exit(1);
     }
 
