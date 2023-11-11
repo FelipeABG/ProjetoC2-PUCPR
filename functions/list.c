@@ -1,28 +1,36 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "list.h"
+#include "../headers/list.h"
 
 
-void addToEnd(List *list, int product_id, int product_amount, float product_price){
+void addSortedToList(List *list, int product_id, int product_amount, float product_price){
 
     Product *product = (Product*)malloc(sizeof(Product));
-    Product *iterator = list->head;
+    Product *head = list->head;
+
 
     product->id = product_id;
     product->amount = product_amount;
     product->price = product_price;
-    product->next = NULL;
 
-    if(list->head == NULL){
+    if(head == NULL){
+        product->next = NULL;
         list->head = product;
     }
+    else if(product->id < head->id){
+        product->next = head;
+        list->head = product;
+
+    }
     else{
-        while(iterator->next != NULL){
-            iterator = iterator->next;
+        while(head->next != NULL && product->id > head->next->id){
+            head = head->next;
         }
-        iterator->next = product;
+        product->next = head->next;
+        head->next = product;
     }
     list->size ++;
+
 }
 
 void removeFromList(List *list, int product_id){
@@ -47,6 +55,7 @@ void removeFromList(List *list, int product_id){
         head->next = elementToBeRemoved->next;
     }
     free(elementToBeRemoved);
+    list->size --;
 }
 
 void printList(List *list){
@@ -61,7 +70,7 @@ void printList(List *list){
 }
 
 
-List* getElementsFromFile(char* file_name){
+List* getListFromFile(char* file_name){
 
     FILE* file = fopen(file_name, "r");
     List* list = (List*)malloc(sizeof(List));
@@ -78,10 +87,9 @@ List* getElementsFromFile(char* file_name){
     float product_price;
 
     while(fscanf(file, "%d %d %f", &product_id, &product_amount, &product_price) != EOF){
-        addToEnd(list, product_id, product_amount, product_price);
+        addSortedToList(list, product_id, product_amount, product_price);
     }
 
     fclose(file);
-
     return list;
 }

@@ -1,14 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "list.h"
+#include "headers/list.h"
 
 int main(int argc, char *argv[])
 {
     for(int i = 1; i < argc; i++){
-        List* list = getElementsFromFile(argv[i]);
+        List* list = getListFromFile(argv[i]);
         printList(list);
         printf("-------------------------\n");
-        removeFromList(list, 4);
+        removeFromList(list, 3);
         printList(list);
     }
     return 0;

@@ -10,7 +10,7 @@ typedef struct {
     int size;
 } List;
 
-void addToEnd(List*, int, int, float);
+void addSortedToList(List*, int, int, float);
 void printList(List*);
 void removeFromList(List*, int);
 List* getElementsFromFile(char*);
