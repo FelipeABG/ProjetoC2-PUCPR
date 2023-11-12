@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers/list.h"
-#include "headers/conversion.h"
+#include "lib/headers/list.h"
+#include "lib/headers/conversion.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,5 +14,6 @@ int main(int argc, char *argv[])
         generateTextFile(argv[i]);
     }
 
+    clear();
     return 0;
 }

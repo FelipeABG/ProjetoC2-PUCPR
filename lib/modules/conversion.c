@@ -1,10 +1,15 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "../headers/list.h"
 
-void generateBinaryFile (List *data){
+void generateBinaryFile (List *data, char* file_name){
 
-    FILE *file = fopen("files/binary/data.bin", "wb");
+    char path[1000] = "lib/files/binary/";
+    strcat(path, file_name);
+
+    FILE *file = fopen(path, "wb");
+
     Product *product = data->head;
 
     if(file == NULL){
@@ -18,16 +23,17 @@ void generateBinaryFile (List *data){
     }
 
     fclose(file);
+    
 }
 
 void generateTextFile (char* file_name){
 
     FILE *binary_file = fopen(file_name, "rb");
-    FILE *text_file = fopen("files/text/data.txt", "w");
+    FILE *text_file = fopen("lib/files/text/data.txt", "w");
     Product *product = (Product*) malloc(sizeof(Product));
 
     if(binary_file == NULL){
-        printf("ERROR: Could not open file.\n");
+        printf("ERROR: The following file could not be opened: %s\n", file_name);
         return;
     }
 

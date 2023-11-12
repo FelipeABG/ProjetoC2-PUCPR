@@ -13,4 +13,7 @@ typedef struct {
 void addSortedToList(List*, int, int, float);
 void printList(List*);
 void removeFromList(List*, int);
-List* getListFromFile(char*);
+List* getListFromTextFile(char*);
+List* getListFromBinaryFile(char*);
+Product* getProductById(Product*, int);
+void clear();
