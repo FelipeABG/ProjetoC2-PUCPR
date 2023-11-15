@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "../headers/list.h"
 
+//Função que limpa o console.
 void clear()
 {
     #ifdef _WIN32
@@ -11,6 +12,7 @@ void clear()
     #endif
 }
 
+//Função que adiciona um novo nó na lista de forma odenada baseada em um de seus atributos.
 void addSortedToList(List *list, int product_id, int product_amount, float product_price){
 
     Product *product = (Product*)malloc(sizeof(Product));
@@ -52,6 +54,7 @@ void addSortedToList(List *list, int product_id, int product_amount, float produ
 
 }
 
+//Remove um nó da lista.
 void removeFromList(List *list, int product_id){
 
     Product *head = list->head;
@@ -89,18 +92,7 @@ void removeFromList(List *list, int product_id){
     
 }
 
-void printList(List *list){
-
-    Product *product = list->head;
-
-    while(product != NULL){
-        printf("Product id: %d \nProduct price: R$%.2f \nProduct amount: %d \n\n", product->id, product->price, product->amount);
-        product = product->next;
-    }
-
-}
-
-
+//Função que cria uma lista com base nos dados de um arquivo de texto.
 List* getListFromTextFile(char* file_name){
 
     FILE* file = fopen(file_name, "r");
@@ -125,6 +117,7 @@ List* getListFromTextFile(char* file_name){
     return list;
 }
 
+//Função que cria uma lista com base nos dados de um arquivo binário.
 List* getListFromBinaryFile(char* file_name){
     
         FILE* file = fopen(file_name, "rb");
@@ -148,6 +141,7 @@ List* getListFromBinaryFile(char* file_name){
         return list;
 }
 
+//Função que retorna um nó da lista baseado em seu id (passado como parametro).
 Product* getProductById(Product* product, int id){
     if(product == NULL){
         return NULL;

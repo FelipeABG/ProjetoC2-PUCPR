@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../headers/list.h"
 
+//Gera um arquivo em formato binário baseado nos dados fornecidos no parâmetro (lista). O arquivo gerado tem o nome fornecido nos parâmetros.
 void generateBinaryFile (List *data, char* file_name){
 
     char path[1000] = "lib/files/binary/";
@@ -26,6 +27,7 @@ void generateBinaryFile (List *data, char* file_name){
     
 }
 
+//Gera um arquivo em formato texto baseado nos arquvio binário passado como parâmetro.
 void generateTextFile (char* file_name){
 
     FILE *binary_file = fopen(file_name, "rb");

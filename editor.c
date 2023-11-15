@@ -5,6 +5,7 @@
 
 int main(int argc, char *argv[]){
 
+    //switch case que verifica quantos se apenas um arquivo foi fornecido como argumento.
     switch (argc)
     {
     case 1:
@@ -15,13 +16,15 @@ int main(int argc, char *argv[]){
         return 0;
     }
 
-    List* list = getListFromBinaryFile(argv[1]);
+    List* list = getListFromBinaryFile(argv[1]); //gera a lista com os valores contidos no arquivo binário.
     int id, amount, option, executing = 1;
     float price;
     char* string;
 
     clear();
 
+
+    // Menu de interação com o  usuário.
     do
     {
         printf("\n\n");
@@ -30,42 +33,42 @@ int main(int argc, char *argv[]){
         scanf("%d", &option);
 
         switch(option){
-            case 1:
+            case 1: //Adiciona um novo produto.
                 clear();
                 printf("Enter product id, amount and price: ");
-                if(!scanf("%d %d %f", &id, &amount, &price)){
+                if(!scanf("%d %d %f", &id, &amount, &price)){  
                     printf("ERROR: Invalid input.\n");
-                    exit(1);
+                    
                 };
                 addSortedToList(list, id, amount, price);
                 break;
-            case 2:
+            case 2: //Remove um produto.
                 clear();
                 printf("Enter the product id: ");
                 if(!scanf("%d", &id)){
                     printf("ERROR: Invalid input.\n");
-                    exit(1);
+
                 };
                 removeFromList(list, id);
                 break;
-            case 3:
+            case 3: //Mostra um produto específico.
                 clear();
                 printf("Enter the product id: ");
                 if(!scanf("%d", &id)){
                     printf("ERROR: Invalid input.\n");
-                    exit(1);
+
                 };
                 Product* product = getProductById(list->head, id);
                 product == NULL ? printf("Product not found.\n") : printf(" Product found:\n ID: %d\n Amount: %d\n Price: %.2f\n", product->id, product->amount, product->price);
                 break;
-            case 4:
+            case 4: //Gera um novo arquivo binário.
                 clear();
                 printf("Enter the file name (.bin): ");
                 scanf("%s", string);
                 generateBinaryFile(list, string);
                 printf("Binary file generated successfully.");
                 break;
-            case 5:
+            case 5: // Salva e sai do programa, gerando um novo arquivo binário.
                 clear();
                 generateBinaryFile(list, "dataEdited.bin");
                 executing = 0;
