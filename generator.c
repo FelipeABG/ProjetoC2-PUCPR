@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
     for(int i = 1; i < argc; i++){
         List* list = getListFromTextFile(argv[i]);
         generateBinaryFile(list, "data.bin");
+        free(list);
     }
     
     clear();

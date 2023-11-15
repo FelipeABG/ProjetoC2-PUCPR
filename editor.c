@@ -78,6 +78,8 @@ int main(int argc, char *argv[]){
                 break;
         }
     } while (executing);
+
+    free(list);
     
     return 0;
 }
